@@ -7,7 +7,7 @@ clearbutton.addEventListener("click", doClear);
 
 function doClear(){
     form.reset();
-    document.getElementById("list").remove();
+    document.getElementById("list").hidden = true;
     document.getElementById("shipIt").hidden = true;
     document.getElementById("options").hidden = true;
     document.getElementById("noimage").hidden = false;

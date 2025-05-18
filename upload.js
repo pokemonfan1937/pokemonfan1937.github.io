@@ -1,5 +1,7 @@
 const input = document.getElementById("upload");
 const preview = document.getElementById("image");
+const image = document.getElementById("showcased")
+image.getContext("2d", { willReadFrequently: true })
 
 input.style.opacity = 0;
 
@@ -15,29 +17,18 @@ function updateImageDisplay() {
         preview.appendChild(para);
     } 
     else{
-        const list = document.createElement("ol");
-        list.id = "list";
-        preview.appendChild(list);
         file = curFiles[0];
-        const para = document.createElement("p");
+        document.getElementById("list").hidden = false;
         if (validFileType(file)){
-            para.textContent = `File name ${file.name}.`;
-            const image = document.createElement("canvas");
-            image.getContext("2d", { willReadFrequently: true })
-            image.id = "showcased";
+            document.getElementById("para").textContent = `File name ${file.name}.`;
             var img = new Image();
             img.onload = draw;
             img.src = URL.createObjectURL(file);
             
             var context = image.getContext('2d');
             context.drawImage(img, 0, 0);
-
-            list.appendChild(image);
-            list.appendChild(para);
-            const download = document.getElementById("shipIt");
-            const options = document.getElementById("options");
-            download.hidden = false;
-            options.hidden = false;
+            document.getElementById("shipIt").hidden = false;
+            document.getElementById("options").hidden = false;
         } 
         else{
             para.textContent = `File name ${file.name}: Not a valid file type. Update your selection.`;

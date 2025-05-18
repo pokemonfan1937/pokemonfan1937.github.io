@@ -11,18 +11,7 @@ function doBorder(){
 }
 
 function addborder(img){
-    let color = prompt("Black or white border? Type 0 for Black or 1 for White");
-    let c;
-    if (color == "0"){
-        c = 0;
-    }
-    else if (color == "1"){
-        c = 255;
-    }
-    else{
-        alert("not a valid input");
-        return img
-    }
+    let c = 0;
     if (img.ndim == 3){
         for (let i = 0; i < img.shape[0]; i++){
             img.set(i,0,0,c)
