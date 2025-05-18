@@ -17,7 +17,13 @@ function doOtsu(){
 
 function otsu(img){
     let thresh = 0;
-    let tempimg = img.slice([null],[null],[1])
+    let tempimg;
+    if (img.ndim == 3){
+        tempimg = img.slice([null],[null],[1])
+    }
+    else{
+        tempimg = img.clone();
+    }
     let temp = nj.zeros(img.shape)
     let sb2 = 0;
     let c;
@@ -51,18 +57,32 @@ function otsu(img){
             thresh = i
         }
     }
-    console.log(thresh)
-    for (let i = 0; i < img.shape[0]; i++){
-        for (let j = 0; j < img.shape[1]; j++){
-            if (img.get(i,j,0) > thresh){
-                c = 255;
+    if (img.ndim == 3){
+        for (let i = 0; i < img.shape[0]; i++){
+            for (let j = 0; j < img.shape[1]; j++){
+                if (img.get(i,j,0) > thresh){
+                    c = 255;
+                }
+                else{
+                    c = 0;
+                }
+                img.set(i, j, 0, c);
+                img.set(i, j, 1, c);
+                img.set(i, j, 2, c);
             }
-            else{
-                c = 0;
+        }
+    }
+    else{
+        for (let i = 0; i < img.shape[0]; i++){
+            for (let j = 0; j < img.shape[1]; j++){
+                if (img.get(i,j) > thresh){
+                    c = 255;
+                }
+                else{
+                    c = 0;
+                }
+                img.set(i, j, c);
             }
-            img.set(i, j, 0, c);
-            img.set(i, j, 1, c);
-            img.set(i, j, 2, c);
         }
     }
     return img
