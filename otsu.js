@@ -1,4 +1,5 @@
 import {gray} from "./gray.js"
+import {reserve} from "./reserve.js"
 
 const otsubutton = document.getElementById("otsu");
 
@@ -7,6 +8,7 @@ otsubutton.addEventListener("click", doOtsu);
 function doOtsu(){
     var showcased = document.getElementById("showcased");
     let imgarray = nj.images.read(showcased);
+    reserve(imgarray)
     gray(imgarray);
     otsu(imgarray);
     nj.images.save(imgarray, showcased)

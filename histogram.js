@@ -1,4 +1,5 @@
 import {gray} from "./gray.js"
+import {reserve} from "./reserve.js"
 
 const equalizebutton = document.getElementById("equalize");
 
@@ -7,6 +8,7 @@ equalizebutton.addEventListener("click", doEqualization);
 function doEqualization(){
     var showcased = document.getElementById("showcased");
     let imgarray = nj.images.read(showcased);
+    reserve(imgarray)
     let original = imgarray.clone();
     gray(imgarray);
     histoequal(original, imgarray);

@@ -1,3 +1,5 @@
+import {reserve} from "./reserve.js"
+
 const borderbutton = document.getElementById("border");
 
 borderbutton.addEventListener("click", doBorder);
@@ -5,6 +7,7 @@ borderbutton.addEventListener("click", doBorder);
 function doBorder(){
     var showcased = document.getElementById("showcased");
     let imgarray = nj.images.read(showcased);
+    reserve(imgarray)
     addborder(imgarray);
     nj.images.save(imgarray, showcased)
 
